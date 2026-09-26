@@ -1,20 +1,18 @@
-<!-- Heart Animation TV NL Component with Canvas -->
+<!-- Heart Animation Pinkboard Component -->
 <div class="heart-animation-container" [class.modal-mode]="isModal">
-  <!-- Back button -->
-  <button class="back-button" (click)="goBack()">
+  <!-- Back / Close button -->
+  <button class="back-button" (click)="goBack()" aria-label="Quay lại hoặc Đóng">
     <span>{{ isModal ? '✕ Đóng' : '← Quay lại' }}</span>
   </button>
 
-  <!-- Canvas for heart animation -->
-  <canvas 
-    #heartCanvas 
-    class="heart-canvas"
-    (mousemove)="onMouseMove($event)"
-    (mouseleave)="onMouseLeave()"
-  ></canvas>
-
-  <!-- Text overlay -->
-  <div class="heart-text-overlay" [class.show]="showText">
-    Anh Yêu Em
+  <!-- Box for pulsating pinkboard canvas -->
+  <div class="box">
+    <div class="pinkboard-box">
+      <canvas #pinkboardCanvas id="pinkboard"></canvas>
+      <div class="heart-text-overlay">
+        <h1>Anh Yêu Em</h1>
+        <p class="sub-text">Minh Quân 💖</p>
+      </div>
+    </div>
   </div>
 </div>

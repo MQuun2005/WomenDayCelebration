@@ -5,163 +5,192 @@
   (click)="onClose()"
 >
   <div 
-    class="popup-content"
+    class="popup-card"
     [@popupAnimation]="isVisible ? 'visible' : 'hidden'"
     (click)="$event.stopPropagation()"
   >
     <!-- Close button -->
     <button 
       (click)="onClose()"
-      class="popup-close"
+      class="popup-close-btn"
+      aria-label="Đóng"
     >
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </button>
 
-    <!-- Message content -->
-    <div class="popup-body">
-
-      
-      <!-- Step Content Container -->
-      <div class="step-container">
-        
-        <!-- Step 1: Welcome -->
-        <div *ngIf="currentStep === 0" class="step-content welcome-step">
-
-          <div class="step-header">
-            <div class="popup-icon">
-              <span>💖</span>
-            </div>
-            <h2 class="popup-name">Gửi đến Nhật Linh</h2>
-          </div>
-          <div class="step-body">
-            <div class="step-icon">🎉</div>
-            <h3 class="step-title">Chào mừng em đến với ngày đặc biệt!</h3>
-            <p class="step-description">
-              Hôm nay là ngày 20/10 - Ngày Phụ Nữ Việt Nam. 
-              Anh đã chuẩn bị một món quà đặc biệt cho em! 💖
-            </p>
-          </div>
-  
-
+    <!-- Step Progress Header -->
+    <header class="popup-header">
+      <div class="step-indicator-wrapper">
+        <div 
+          *ngFor="let step of steps; let i = index" 
+          class="step-progress-item"
+          [class.active]="i === currentStep"
+          [class.completed]="i < currentStep"
+          (click)="goToStep(i)"
+        >
+          <span class="step-num">{{ '0' + (i + 1) }}</span>
+          <span class="step-label">{{ step }}</span>
         </div>
+      </div>
+    </header>
+
+    <!-- Popup Body / Step Content -->
+    <div class="popup-body">
+      <!-- Step 0: Welcome -->
+      <div *ngIf="currentStep === 0" class="step-content welcome-step">
+        <div class="content-badge">
+          <span>🌸 Lời mở đầu</span>
+        </div>
+        <h2 class="step-heading">Gửi Đến Minh Quân</h2>
+        <div class="step-avatar-ornament">
+          <div class="ornament-circle">💌</div>
+        </div>
+        <p class="step-lead">
+          Chào mừng em đến với không gian đặc biệt hôm nay!
+        </p>
+        <p class="step-paragraph">
+          Hôm nay là ngày 20/10 — ngày tôn vinh những người phụ nữ tuyệt vời. Anh đã chuẩn bị những lời nhắn và điều bất ngờ nho nhỏ này từ tận đáy lòng dành riêng cho người anh thương nhất.
+        </p>
+      </div>
+
+      <!-- Step 1: Slideshow -->
+      <div *ngIf="currentStep === 1" class="step-content slideshow-step">
+        <div class="content-badge">
+          <span>📸 Khoảnh khắc</span>
+        </div>
+        <h2 class="step-heading">Những Giây Phút Bên Em</h2>
         
-        <!-- Step 2: Slideshow -->
-        <div *ngIf="currentStep === 1" class="step-content slideshow-step">
-          <h3 class="step-title">Những khoảnh khắc đẹp của chúng ta</h3>
-          <div class="slideshow-container">
-            <div class="slideshow-wrapper">
+        <div class="gallery-container">
+          <div class="polaroid-frame">
+            <div class="polaroid-image-wrapper">
               <div 
                 *ngFor="let image of images; let i = index"
-                class="slide"
+                class="gallery-slide"
                 [class.active]="i === currentSlideIndex"
               >
                 <img 
                   [src]="image" 
-                  [alt]="'Hình ảnh chúc mừng cho Nhật Linh ' + (i + 1)"
-                  class="popup-image"
+                  (error)="handleImageError($event)"
+                  [alt]="'Khoảnh khắc bên Minh Quân ' + (i + 1)"
+                  class="gallery-img"
                 />
-                <div class="image-overlay">
-                  <span class="image-heart">💕</span>
-                </div>
               </div>
             </div>
-            
-            <!-- Navigation Dots -->
-            <div class="slideshow-dots">
+            <div class="polaroid-caption">
+              <span>Mỗi nụ cười của em đều là tia nắng ấm áp 💖</span>
+            </div>
+          </div>
+
+          <!-- Slide Controls -->
+          <div class="gallery-controls">
+            <button class="gallery-btn prev-btn" (click)="previousSlide()" aria-label="Ảnh trước">
+              ❮
+            </button>
+            <div class="gallery-dots">
               <span 
                 *ngFor="let image of images; let i = index"
-                class="dot"
+                class="gallery-dot"
                 [class.active]="i === currentSlideIndex"
                 (click)="goToSlide(i)"
               ></span>
             </div>
-            
-            <!-- Navigation Arrows -->
-            <button class="prev-btn" (click)="previousSlide()">❮</button>
-            <button class="next-btn" (click)="nextSlide()">❯</button>
+            <button class="gallery-btn next-btn" (click)="nextSlide()" aria-label="Ảnh kế tiếp">
+              ❯
+            </button>
           </div>
         </div>
-        
-        <!-- Step 3: Message -->
-        <div *ngIf="currentStep === 2" class="step-content message-step">
-          <div class="step-icon">💌</div>
-          <h3 class="step-title">Lời chúc từ trái tim anh</h3>
-          <p class="step-description">
-            Nhân dịp 20/10, chúc người yêu xinh đẹp nhất trần đời của anh có một ngày lễ vui vẻ, ngập tràn hạnh phúc. Anh yêu em rất nhiều! Cảm ơn em đã đến và sưởi ấm trái tim anh. Nhân ngày 20/10, chúc người anh yêu mãi xinh đẹp, trẻ trung và yêu anh nhiều hơn nữa nhé! 💖
-          </p>
-        </div>
-        
-        <!-- Step 4: Memories -->
-        <div *ngIf="currentStep === 3" class="step-content memories-step">
-          <div class="step-icon">📸</div>
-          <h3 class="step-title">Những kỉ niệm đáng nhớ</h3>
-          <div class="memories-grid">
-            <div *ngFor="let memory of memories" class="memory-item">
-              <div class="memory-icon">{{ memory.icon }}</div>
-              <h4 class="memory-title">{{ memory.title }}</h4>
-              <p class="memory-description">{{ memory.description }}</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Step 5: Final -->
-        <div *ngIf="currentStep === 4" class="step-content final-step">
-          <div class="step-icon">💝</div>
-          <h3 class="step-title">Cảm ơn em vì tất cả!</h3>
-          <p class="step-description">
-            Em là người phụ nữ tuyệt vời nhất trong cuộc đời anh. Yêu em nhiều nè💖
-          </p>
-          <div class="final-hearts">
-            <span>💕</span>
-            <span>💖</span>
-            <span>💕</span>
-            <span>💖</span>
-            <span>💕</span>
-          </div>
-        </div>
-        
       </div>
-      
-      <!-- Navigation and Decorations Combined -->
-      <div class="nav-decorations-container">
-        <!-- Navigation Buttons -->
-        <div class="step-navigation">
-          <button 
-            *ngIf="currentStep > 0"
-            (click)="previousStep()"
-            class="nav-button prev-step-btn"
-          >
-            ❮ Trước
-          </button>
-          
-          <button 
-            *ngIf="currentStep < steps.length - 1"
-            (click)="nextStep()"
-            class="nav-button next-step-btn"
-          >
-            Tiếp ❯
-          </button>
-          
-          <button 
-            *ngIf="currentStep === steps.length - 1"
-            (click)="goToHeartPage()"
-            class="nav-button finish-btn"
-          >
-            Cuối gòi nè! 💝
-          </button>
+
+      <!-- Step 2: Message / Love Letter -->
+      <div *ngIf="currentStep === 2" class="step-content letter-step">
+        <div class="content-badge">
+          <span>🌹 Lời từ trái tim</span>
         </div>
+        <h2 class="step-heading">Bức Thư Gửi Người Anh Yêu</h2>
         
-        <!-- Decorative elements -->
-        <div class="popup-decorations">
-          <span>🌸</span>
-          <span>✨</span>
-          <span>💕</span>
-          <span>🌺</span>
-          <span>💝</span>
+        <div class="love-letter-card">
+          <div class="letter-quote-mark">“</div>
+          <p class="letter-text">
+            Nhân ngày 20/10, chúc người yêu xinh đẹp, đáng yêu nhất trần đời của anh luôn ngập tràn niềm vui, bình an và hạnh phúc.
+          </p>
+          <p class="letter-text">
+            Cảm ơn em đã đến bên anh, mang theo nụ cười rạng rỡ và sưởi ấm trái tim anh mỗi ngày. Chúc em mãi luôn rạng rỡ, tự tin và yêu thương anh thật nhiều nhé!
+          </p>
+          <div class="letter-signature">
+            <span>Mãi yêu em,</span>
+            <strong>Bồ của em 💖</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Memories -->
+      <div *ngIf="currentStep === 3" class="step-content memories-step">
+        <div class="content-badge">
+          <span>✨ Ký ức ngọt ngào</span>
+        </div>
+        <h2 class="step-heading">Những Kỷ Niệm Của Chúng Mình</h2>
+        
+        <div class="memories-grid">
+          <div *ngFor="let memory of memories" class="memory-card">
+            <div class="memory-icon-box">{{ memory.icon }}</div>
+            <h4 class="memory-title">{{ memory.title }}</h4>
+            <p class="memory-desc">{{ memory.description }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Final Gift -->
+      <div *ngIf="currentStep === 4" class="step-content final-step">
+        <div class="content-badge">
+          <span>💝 Món quà bí mật</span>
+        </div>
+        <h2 class="step-heading">Trái Tim Này Thuộc Về Em</h2>
+        
+        <div class="final-card">
+          <div class="final-emblem">🤍</div>
+          <p class="final-lead">
+            Cảm ơn Minh Quân vì tất cả những dịu dàng em đã mang đến cho anh.
+          </p>
+          <p class="final-subtext">
+            Anh có một điều đặc biệt được kết tinh từ hàng ngàn hạt ánh sáng tình yêu dành riêng cho em. Hãy nhấn vào nút bên dưới để mở ra nhé!
+          </p>
+          <button (click)="goToHeartPage()" class="final-cta-btn">
+            <span>Khám phá trái tim ánh sáng</span>
+            <span class="cta-sparkle">✦</span>
+          </button>
         </div>
       </div>
     </div>
+
+    <!-- Navigation Footer -->
+    <footer class="popup-footer">
+      <button 
+        *ngIf="currentStep > 0"
+        (click)="previousStep()"
+        class="nav-btn btn-secondary"
+      >
+        ❮ Quay lại
+      </button>
+
+      <div class="footer-spacer" *ngIf="currentStep === 0"></div>
+
+      <button 
+        *ngIf="currentStep < steps.length - 1"
+        (click)="nextStep()"
+        class="nav-btn btn-primary"
+      >
+        Tiếp theo ❯
+      </button>
+
+      <button 
+        *ngIf="currentStep === steps.length - 1"
+        (click)="goToHeartPage()"
+        class="nav-btn btn-primary"
+      >
+        Mở quà ✦
+      </button>
+    </footer>
   </div>
 </div>

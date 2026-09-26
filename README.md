@@ -1,12 +1,12 @@
 # Women's Day Celebration 💖
 
-Ứng dụng web chúc mừng Ngày Phụ Nữ Việt Nam (20/10) với popup slideshow đặc biệt cho Nhật Linh.
+Ứng dụng web chúc mừng Ngày Phụ Nữ Việt Nam (20/10) với popup slideshow đặc biệt cho Minh Quân.
 
 ## ✨ Tính năng
 
 - 🎉 **Popup chúc mừng** với 5 step tương tác
 - 📸 **Slideshow tự động** với 23 hình ảnh
-- 💌 **Lời chúc cá nhân hóa** cho Nhật Linh
+- 💌 **Lời chúc cá nhân hóa** cho Minh Quân
 - 📸 **Kỉ niệm đặc biệt** với grid layout đẹp mắt
 - 💖 **Animations mượt mà** và responsive design
 - 🎨 **Giao diện lãng mạn** với tông màu hồng

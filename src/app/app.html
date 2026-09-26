@@ -1,74 +1,60 @@
 <!-- Main Page - Women's Day Celebration (only show when on home route) -->
-<div class="gradient-bg" *ngIf="isHomePage()">
+<div class="romantic-page" *ngIf="isHomePage()">
+  <!-- Ambient background glow elements (natural candlelight/blush warmth without moving gradients) -->
+  <div class="ambient-glow glow-top-left" aria-hidden="true"></div>
+  <div class="ambient-glow glow-bottom-right" aria-hidden="true"></div>
 
-
-  <!-- Main Content -->
-  <div class="main-container">
-
-    <!-- Main Title Section -->
-    <div class="main-title fade-in-up">
-      <!-- Decorative hearts around title -->
-      <div class="title-decoration">
-        <span>💖</span>
-        <h1 class="title-text">
-          Chúc Mừng Ngày Phụ Nữ Việt Nam
-        </h1>
-        <span>💖</span>
-      </div>
-
-      <!-- Date -->
-      <div class="date-text">
-        20/10
-      </div>
-
-      <!-- Subtitle -->
-      <p class="subtitle">
-        Gửi lời yêu thương đến người anh yêu 💖
-      </p>
-    </div>
-
-    <!-- Decorative Elements -->
-    <div class="decorative-elements scale-in">
-      <span>🌸</span>
-      <span>✨</span>
-      <span>💕</span>
-      <span>🌺</span>
-      <span>💝</span>
-    </div>
-
-    <!-- Action Buttons -->
-    <div class="button-container scale-in">
-      <button (click)="showMessagePopup()" class="action-button">
-        <!-- Button glow effect -->
-        <div class="button-glow"></div>
-
-        <!-- Button content -->
-        <span class="button-content">
-          <span>Nhấn vào đây nhen cục cưng</span>
-          <span>💝</span>
-        </span>
-      </button>
-    <!-- <button 
-        (click)="goToHeartTVNL()"
-        class="action-button heart-tv-nl-button"
-      >
-        <div class="button-glow"></div>
-        
-        <span class="button-content">
-          <span>Trái Tim TV NL</span>
-          <span>💕</span>
-        </span>
-      </button> -->
-     
-    </div>
-
-    <!-- Footer -->
-    <div class="footer fade-in-up">
-      <p class="footer-text">
-        Made in bồ em :D
-      </p>
-    </div>
+  <!-- Gentle falling petals / sparkles -->
+  <div class="petals-container" aria-hidden="true">
+    <div class="petal petal-1">🌸</div>
+    <div class="petal petal-2">✨</div>
+    <div class="petal petal-3">🌸</div>
+    <div class="petal petal-4">🤍</div>
+    <div class="petal petal-5">✨</div>
+    <div class="petal petal-6">🌸</div>
   </div>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <div class="romantic-card fade-in-up">
+      <!-- Top Badge -->
+      <div class="card-badge">
+        <span class="badge-icon">❀</span>
+        <span>20.10 • Ngày Phụ Nữ Việt Nam</span>
+      </div>
+
+      <!-- Main Title Section -->
+      <h1 class="main-title">
+        Chúc Mừng Ngày Phụ Nữ Việt Nam
+      </h1>
+
+      <p class="subtitle">
+        Gửi trọn yêu thương & những điều dịu dàng nhất đến <strong>Minh Quân</strong>
+      </p>
+
+      <!-- Delicate Divider -->
+      <div class="card-divider">
+        <span class="divider-icon">✦</span>
+      </div>
+
+      <p class="card-quote">
+        “Mỗi khoảnh khắc có em đều là điều tuyệt vời nhất đối với anh.”
+      </p>
+
+      <!-- Action Button -->
+      <div class="button-wrapper">
+        <button (click)="showMessagePopup()" class="action-button">
+          <span>Mở món quà tình yêu</span>
+          <span class="button-icon">✦</span>
+        </button>
+      </div>
+
+      <!-- Footer -->
+      <footer class="card-footer">
+        <span>Made with love for Minh Quân</span>
+      </footer>
+    </div>
+  </main>
 
   <!-- Message Popup -->
   <app-message-popup 
@@ -77,7 +63,6 @@
     (openHeartTVNLModal)="showHeartTVNLModalPopup()">
   </app-message-popup>
 </div>
-
 
 <!-- Heart TV NL Modal Fullscreen -->
 <div class="heart-tv-nl-modal-overlay" *ngIf="showHeartTVNLModal" (click)="closeHeartTVNLModal()">

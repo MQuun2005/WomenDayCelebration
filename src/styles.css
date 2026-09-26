@@ -1,7 +1,40 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
+/* ==========================================================================
+   Modern Romantic Design System - Women's Day Celebration
+   Style: Minimalist, Editorial, Warm Romance (Zero Cheesy Gradients)
+   ========================================================================== */
 
-/* Global styles */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap');
+
+/* CSS Variables */
+:root {
+  --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Colors */
+  --bg-porcelain: #FAF7F5;
+  --bg-card: rgba(255, 255, 255, 0.94);
+  --bg-card-subtle: #FDF9F9;
+
+  /* Primary Velvet Rose */
+  --color-primary: #B84D63;
+  --color-primary-hover: #9E3D52;
+  --color-primary-light: #F8ECEF;
+
+  /* Typography Colors */
+  --color-heading: #431E27;
+  --color-text: #45363B;
+  --color-text-muted: #8E7A81;
+  --color-gold: #C5A059;
+
+  /* Borders & Shadows */
+  --border-light: rgba(214, 185, 192, 0.4);
+  --border-card: rgba(226, 206, 212, 0.6);
+  --shadow-card: 0 24px 60px -15px rgba(84, 38, 49, 0.08), 0 0 1px 1px rgba(255, 255, 255, 0.9) inset;
+  --shadow-btn: 0 10px 24px -4px rgba(184, 77, 99, 0.35);
+}
+
+/* Global Reset */
 * {
   margin: 0;
   padding: 0;
@@ -11,457 +44,270 @@
 html, body {
   height: 100%;
   overflow-x: hidden;
-  overflow-y: auto;
+  background-color: var(--bg-porcelain);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  position: relative;
-}
-
-/* Gradient background animation */
-.gradient-bg {
-  background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fecfef, #ff9a9e);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+/* Page Background Wrapper */
+.romantic-page {
   min-height: 100vh;
   width: 100%;
   position: relative;
+  background-color: var(--bg-porcelain);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Heart animation container */
-.heart-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+/* Ambient Warm Glow Elements (Natural Candlelight / Soft Glow instead of moving gradients) */
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
   pointer-events: none;
-  z-index: 10;
+  filter: blur(120px);
+  z-index: 1;
+}
+
+.glow-top-left {
+  top: -10%;
+  left: -5%;
+  width: 50vw;
+  height: 50vw;
+  max-width: 600px;
+  max-height: 600px;
+  background: radial-gradient(circle, rgba(245, 222, 228, 0.7) 0%, rgba(250, 247, 245, 0) 70%);
+}
+
+.glow-bottom-right {
+  bottom: -10%;
+  right: -5%;
+  width: 55vw;
+  height: 55vw;
+  max-width: 650px;
+  max-height: 650px;
+  background: radial-gradient(circle, rgba(253, 237, 226, 0.6) 0%, rgba(250, 247, 245, 0) 70%);
+}
+
+/* Floating Gentle Petals / Sparkles */
+.petals-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
   overflow: hidden;
 }
 
-/* Custom heart animation styles */
-.heart {
+.petal {
   position: absolute;
-  width: 16px;
-  height: 16px;
-  background: #ff6b9d;
-  transform: rotate(45deg);
-  animation: heartFloat 6s ease-in-out infinite;
+  font-size: 1.25rem;
+  opacity: 0.45;
+  animation: gentleDrift 14s linear infinite;
+  user-select: none;
 }
 
-.heart:before,
-.heart:after {
-  content: '';
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  background: #ff6b9d;
-  border-radius: 50%;
-}
+.petal-1 { top: -5%; left: 12%; animation-duration: 16s; animation-delay: 0s; font-size: 1.1rem; }
+.petal-2 { top: -5%; left: 35%; animation-duration: 20s; animation-delay: 4s; font-size: 0.9rem; }
+.petal-3 { top: -5%; left: 60%; animation-duration: 15s; animation-delay: 2s; font-size: 1.2rem; }
+.petal-4 { top: -5%; left: 82%; animation-duration: 18s; animation-delay: 6s; font-size: 0.95rem; }
+.petal-5 { top: -5%; left: 25%; animation-duration: 22s; animation-delay: 8s; font-size: 0.85rem; }
+.petal-6 { top: -5%; left: 75%; animation-duration: 17s; animation-delay: 3s; font-size: 1.15rem; }
 
-.heart:before {
-  top: -8px;
-  left: 0;
-}
-
-.heart:after {
-  top: 0;
-  left: -8px;
-}
-
-@media (max-width: 768px) {
-  .heart {
-    width: 14px;
-    height: 14px;
-  }
-  
-  .heart:before,
-  .heart:after {
-    width: 14px;
-    height: 14px;
-  }
-  
-  .heart:before {
-    top: -7px;
-  }
-  
-  .heart:after {
-    left: -7px;
-  }
-}
-
-@media (max-width: 480px) {
-  .heart {
-    width: 12px;
-    height: 12px;
-  }
-  
-  .heart:before,
-  .heart:after {
-    width: 12px;
-    height: 12px;
-  }
-  
-  .heart:before {
-    top: -6px;
-  }
-  
-  .heart:after {
-    left: -6px;
-  }
-}
-
-@keyframes heartFloat {
-  0%, 100% {
-    transform: translateY(100vh) rotate(45deg) scale(0);
+@keyframes gentleDrift {
+  0% {
+    transform: translateY(-20px) rotate(0deg) translateX(0);
     opacity: 0;
   }
-  10% {
-    opacity: 1;
-    transform: translateY(90vh) rotate(45deg) scale(1);
+  15% {
+    opacity: 0.55;
   }
-  90% {
-    opacity: 1;
-    transform: translateY(-10vh) rotate(45deg) scale(1);
+  85% {
+    opacity: 0.45;
   }
   100% {
-    transform: translateY(-20vh) rotate(45deg) scale(0);
+    transform: translateY(105vh) rotate(360deg) translateX(60px);
     opacity: 0;
   }
 }
 
-/* Main container styles */
+/* Main Layout Container */
 .main-container {
   position: relative;
-  z-index: 20;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
+  z-index: 10;
   width: 100%;
-  max-width: 100vw;
+  max-width: 720px;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Title styles */
-.main-title {
+/* Central Romantic Card (Digital Love Letter Style) */
+.romantic-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-card);
+  border-radius: 32px;
+  box-shadow: var(--shadow-card);
+  padding: 4rem 3rem;
+  width: 100%;
   text-align: center;
-  margin-bottom: 2rem;
-  width: 100%;
-  max-width: 100%;
+  position: relative;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.title-decoration {
-  display: flex;
-  justify-content: center;
+.romantic-card:hover {
+  box-shadow: 0 30px 70px -15px rgba(84, 38, 49, 0.12);
+}
+
+/* Card Header Badge */
+.card-badge {
+  display: inline-flex;
   align-items: center;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.title-decoration span {
-  font-size: 2rem;
-  animation: pulse 2s ease-in-out infinite;
-  flex-shrink: 0;
-}
-
-.title-text {
-  font-size: 2.5rem;
-  font-family: 'Dancing Script', cursive;
-  font-weight: bold;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-  word-wrap: break-word;
-  hyphens: auto;
-}
-
-.date-text {
-  font-size: 2rem;
-  font-family: 'Dancing Script', cursive;
+  gap: 8px;
+  background: var(--color-primary-light);
+  border: 1px solid rgba(184, 77, 99, 0.15);
+  color: var(--color-primary);
+  font-size: 0.78rem;
   font-weight: 600;
-  color: #fce7f3;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-  margin-bottom: 1.5rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 7px 18px;
+  border-radius: 999px;
+  margin-bottom: 2rem;
+}
+
+.badge-icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+/* Main Title Section */
+.main-title {
+  font-family: var(--font-serif);
+  font-size: 3.1rem;
+  font-weight: 600;
+  color: var(--color-heading);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.25rem;
 }
 
 .subtitle {
-  font-size: 1rem;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-  max-width: 100%;
+  font-size: 1.1rem;
+  color: var(--color-text);
+  line-height: 1.6;
+  max-width: 500px;
   margin: 0 auto;
-  line-height: 1.5;
-  padding: 0 1rem;
+  font-weight: 400;
 }
 
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .main-container {
-    padding: 0.5rem;
-  }
-  
-  .main-title {
-    margin-bottom: 1.5rem;
-  }
-  
-  .title-decoration {
-    margin-bottom: 0.75rem;
-  }
-  
-  .title-decoration span {
-    font-size: 1.5rem;
-  }
-  
-  .title-text {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-  }
-  
-  .date-text {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .subtitle {
-    font-size: 0.875rem;
-    padding: 0 0.5rem;
-  }
+.subtitle strong {
+  color: var(--color-primary);
+  font-weight: 600;
 }
 
-@media (max-width: 480px) {
-  .title-text {
-    font-size: 1.5rem;
-  }
-  
-  .date-text {
-    font-size: 1.25rem;
-  }
-  
-  .subtitle {
-    font-size: 0.8rem;
-  }
-}
-
-/* Decorative elements */
-.decorative-elements {
+/* Delicate Divider */
+.card-divider {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin: 2rem auto;
+  width: 60%;
+  max-width: 220px;
 }
 
-.decorative-elements span {
-  font-size: 1.5rem;
-  animation: bounce 2s ease-in-out infinite;
-  flex-shrink: 0;
+.card-divider::before,
+.card-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-light), transparent);
 }
 
-.decorative-elements span:nth-child(2) {
-  animation-delay: 0.1s;
+.divider-icon {
+  color: var(--color-gold);
+  font-size: 0.9rem;
+  opacity: 0.85;
 }
 
-.decorative-elements span:nth-child(3) {
-  animation-delay: 0.2s;
+/* Card Quote */
+.card-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  max-width: 460px;
+  margin: 0 auto 2.5rem;
 }
 
-.decorative-elements span:nth-child(4) {
-  animation-delay: 0.3s;
-}
-
-.decorative-elements span:nth-child(5) {
-  animation-delay: 0.4s;
-}
-
-@media (max-width: 768px) {
-  .decorative-elements {
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .decorative-elements span {
-    font-size: 1.25rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .decorative-elements span {
-    font-size: 1rem;
-  }
-}
-
-/* Button styles */
-.button-container {
-  text-align: center;
+/* Action Button */
+.button-wrapper {
   margin-bottom: 2rem;
 }
 
 .action-button {
-  position: relative;
-  background: linear-gradient(45deg, #f472b6, #a855f7, #f472b6);
-  color: white;
-  padding: 0.875rem 1.75rem;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  background: var(--color-primary);
+  color: #FFFFFF;
   border: none;
+  border-radius: 999px;
+  padding: 16px 38px;
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   cursor: pointer;
-  transition: all 0.3s ease;
-  transform: scale(1);
-  max-width: 90vw;
-  width: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-btn);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  outline: none;
 }
 
 .action-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 30px rgba(244, 114, 182, 0.4);
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -4px rgba(184, 77, 99, 0.45);
 }
 
-.action-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.3);
+.action-button:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 16px -2px rgba(184, 77, 99, 0.3);
 }
 
-.button-glow {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, #f472b6, #a855f7, #f472b6);
-  border-radius: 50px;
-  filter: blur(12px);
-  opacity: 0.75;
-  transition: opacity 0.3s ease;
+.button-icon {
+  font-size: 0.9rem;
+  color: #FFE6EC;
+  transition: transform 0.3s ease;
 }
 
-.action-button:hover .button-glow {
-  opacity: 1;
+.action-button:hover .button-icon {
+  transform: scale(1.2) rotate(15deg);
 }
 
-.button-content {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  justify-content: center;
-}
-
-.button-content span:last-child {
-  font-size: 1.25rem;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.button-description {
-  margin-top: 0.75rem;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.8);
-  font-family: 'Poppins', sans-serif;
-}
-
-@media (max-width: 768px) {
-  .action-button {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.9rem;
-  }
-  
-  .button-content span:last-child {
-    font-size: 1.125rem;
-  }
-  
-  .button-description {
-    font-size: 0.75rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .action-button {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.85rem;
-  }
-  
-  .button-content span:last-child {
-    font-size: 1rem;
-  }
-}
-
-/* Footer */
-.footer {
-  margin-top: 2rem;
-  text-align: center;
-  padding: 0 1rem;
-}
-
-.footer-text {
-  color: rgba(255, 255, 255, 0.7);
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.8rem;
-}
-
-@media (max-width: 768px) {
-  .footer {
-    margin-top: 1.5rem;
-  }
-  
-  .footer-text {
-    font-size: 0.75rem;
-  }
+/* Footer in Card */
+.card-footer {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(214, 185, 192, 0.25);
 }
 
 /* Animations */
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
-}
-
-/* Fade in animations */
 .fade-in-up {
   opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 1s ease-out forwards;
-}
-
-.scale-in {
-  opacity: 0;
-  transform: scale(0.8);
-  animation: scaleIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  transform: translateY(24px);
+  animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes fadeInUp {
@@ -471,155 +317,65 @@ body {
   }
 }
 
-@keyframes scaleIn {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Popup styles */
-.popup-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-}
-
-.popup-content {
-  background: white;
-  border-radius: 1rem;
-  max-width: 28rem;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-  transform: scale(1);
-  transition: transform 0.3s ease;
-}
-
-.popup-content:hover {
-  transform: scale(1.05);
-}
-
-.popup-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  color: #9ca3af;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.popup-close:hover {
-  color: #6b7280;
-}
-
-.popup-close svg {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-.popup-body {
-  text-align: center;
-}
-
-.popup-icon {
-  margin-bottom: 1rem;
-}
-
-.popup-icon span {
-  font-size: 3rem;
-  animation: bounce 2s ease-in-out infinite;
-}
-
-.popup-message {
-  font-size: 1.125rem;
-  color: #374151;
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
-
-.popup-decorations {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.popup-decorations span {
-  font-size: 1.5rem;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.popup-decorations span:nth-child(2) {
-  animation-delay: 0.1s;
-}
-
-.popup-decorations span:nth-child(3) {
-  animation-delay: 0.2s;
-}
-
-.popup-button {
-  background: linear-gradient(45deg, #f472b6, #a855f7);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 50px;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.popup-button:hover {
-  transform: scale(1.05);
-  background: linear-gradient(45deg, #f472b6, #a855f7);
-}
-
-/* Popup responsive design */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .popup-content {
-    margin: 0.5rem;
-    padding: 1.5rem;
-    max-width: calc(100vw - 1rem);
+  .romantic-card {
+    padding: 3rem 1.75rem;
+    border-radius: 26px;
   }
-  
-  .popup-message {
+
+  .main-title {
+    font-size: 2.35rem;
+  }
+
+  .subtitle {
     font-size: 1rem;
   }
-  
-  .popup-icon span {
-    font-size: 2.5rem;
+
+  .card-quote {
+    font-size: 1.15rem;
+    margin-bottom: 2rem;
   }
-  
-  .popup-decorations span {
-    font-size: 1.25rem;
+
+  .action-button {
+    padding: 14px 30px;
+    font-size: 0.92rem;
   }
 }
 
 @media (max-width: 480px) {
-  .popup-content {
-    margin: 0.25rem;
-    padding: 1rem;
+  .main-container {
+    padding: 1.5rem 1rem;
   }
-  
-  .popup-message {
-    font-size: 0.9rem;
+
+  .romantic-card {
+    padding: 2.5rem 1.25rem;
+    border-radius: 22px;
   }
-  
-  .popup-icon span {
-    font-size: 2rem;
+
+  .card-badge {
+    font-size: 0.72rem;
+    padding: 6px 14px;
+    letter-spacing: 0.12em;
+    margin-bottom: 1.5rem;
   }
-  
-  .popup-decorations span {
-    font-size: 1rem;
+
+  .main-title {
+    font-size: 1.95rem;
+    line-height: 1.2;
   }
-  
-  .popup-button {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.9rem;
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .card-quote {
+    font-size: 1.05rem;
+  }
+
+  .action-button {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
   }
 }
