@@ -1,0 +1,91 @@
+<!-- Main Page - Women's Day Celebration (only show when on home route) -->
+<div class="gradient-bg" *ngIf="isHomePage()">
+
+
+  <!-- Main Content -->
+  <div class="main-container">
+
+    <!-- Main Title Section -->
+    <div class="main-title fade-in-up">
+      <!-- Decorative hearts around title -->
+      <div class="title-decoration">
+        <span>💖</span>
+        <h1 class="title-text">
+          Chúc Mừng Ngày Phụ Nữ Việt Nam
+        </h1>
+        <span>💖</span>
+      </div>
+
+      <!-- Date -->
+      <div class="date-text">
+        20/10
+      </div>
+
+      <!-- Subtitle -->
+      <p class="subtitle">
+        Gửi lời yêu thương đến người anh yêu 💖
+      </p>
+    </div>
+
+    <!-- Decorative Elements -->
+    <div class="decorative-elements scale-in">
+      <span>🌸</span>
+      <span>✨</span>
+      <span>💕</span>
+      <span>🌺</span>
+      <span>💝</span>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="button-container scale-in">
+      <button (click)="showMessagePopup()" class="action-button">
+        <!-- Button glow effect -->
+        <div class="button-glow"></div>
+
+        <!-- Button content -->
+        <span class="button-content">
+          <span>Nhấn vào đây nhen cục cưng</span>
+          <span>💝</span>
+        </span>
+      </button>
+    <!-- <button 
+        (click)="goToHeartTVNL()"
+        class="action-button heart-tv-nl-button"
+      >
+        <div class="button-glow"></div>
+        
+        <span class="button-content">
+          <span>Trái Tim TV NL</span>
+          <span>💕</span>
+        </span>
+      </button> -->
+     
+    </div>
+
+    <!-- Footer -->
+    <div class="footer fade-in-up">
+      <p class="footer-text">
+        Made in bồ em :D
+      </p>
+    </div>
+  </div>
+
+  <!-- Message Popup -->
+  <app-message-popup 
+    [isVisible]="showPopup" 
+    (closePopup)="closeMessagePopup()"
+    (openHeartTVNLModal)="showHeartTVNLModalPopup()">
+  </app-message-popup>
+</div>
+
+
+<!-- Heart TV NL Modal Fullscreen -->
+<div class="heart-tv-nl-modal-overlay" *ngIf="showHeartTVNLModal" (click)="closeHeartTVNLModal()">
+  <div class="heart-tv-nl-modal-content" (click)="$event.stopPropagation()">
+    <app-heart-animation-tv-nl [isModal]="true" (closeModal)="closeHeartTVNLModal()">
+    </app-heart-animation-tv-nl>
+  </div>
+</div>
+
+<!-- Router Outlet for different pages -->
+<router-outlet></router-outlet>

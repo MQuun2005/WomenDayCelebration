@@ -1,0 +1,20 @@
+<!-- Heart Animation TV NL Component with Canvas -->
+<div class="heart-animation-container" [class.modal-mode]="isModal">
+  <!-- Back button -->
+  <button class="back-button" (click)="goBack()">
+    <span>{{ isModal ? '✕ Đóng' : '← Quay lại' }}</span>
+  </button>
+
+  <!-- Canvas for heart animation -->
+  <canvas 
+    #heartCanvas 
+    class="heart-canvas"
+    (mousemove)="onMouseMove($event)"
+    (mouseleave)="onMouseLeave()"
+  ></canvas>
+
+  <!-- Text overlay -->
+  <div class="heart-text-overlay" [class.show]="showText">
+    Anh Yêu Em
+  </div>
+</div>
