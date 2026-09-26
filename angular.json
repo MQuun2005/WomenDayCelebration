@@ -62,7 +62,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/WomenDayCeleration/"
+              "baseHref": "/WomenDayCelebration/"
             },
             "development": {
               "optimization": false,

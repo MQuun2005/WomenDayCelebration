@@ -1,7 +1,7 @@
 @echo off
 
 REM Build for GitHub Pages
-ng build --configuration=production --base-href="/WomenDayCeleration/"
+ng build --configuration=production --base-href="/WomenDayCelebration/"
 
 REM Copy 404.html to dist
 copy 404.html dist\women-day-celebration\browser\

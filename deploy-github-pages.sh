@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build for GitHub Pages
-ng build --configuration=production --base-href="/WomenDayCeleration/"
+ng build --configuration=production --base-href="/WomenDayCelebration/"
 
 # Copy 404.html to dist
 cp 404.html dist/women-day-celebration/browser/

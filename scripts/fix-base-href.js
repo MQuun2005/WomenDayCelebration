@@ -8,13 +8,13 @@ try {
   // Đọc file index.html
   let content = fs.readFileSync(indexPath, 'utf8');
   
-  // Đảm bảo base href là "/WomenDayCeleration/" (có thể đã được set từ angular.json)
-  content = content.replace(/<base href="[^"]*">/, '<base href="/WomenDayCeleration/">');
+  // Đảm bảo base href là "/WomenDayCelebration/" (có thể đã được set từ angular.json)
+  content = content.replace(/<base href="[^"]*">/, '<base href="/WomenDayCelebration/">');
   
   // Ghi lại file
   fs.writeFileSync(indexPath, content, 'utf8');
   
-  console.log('✅ Base href đã được đảm bảo là /WomenDayCeleration/ cho GitHub Pages');
+  console.log('✅ Base href đã được đảm bảo là /WomenDayCelebration/ cho GitHub Pages');
 } catch (error) {
   console.error('❌ Lỗi khi sửa base href:', error.message);
   process.exit(1);
